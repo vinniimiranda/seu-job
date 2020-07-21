@@ -14,12 +14,12 @@ const ThemeContext: React.FC = () => {
         palette: {
           type: prefersDarkMode ? "dark" : "light",
           primary: {
-            main: prefersDarkMode ? "#00BFA6" : "#00BFA6",
+            main: prefersDarkMode ? "#EE7633" : "#00BFA6",
             contrastText: "#fff",
 
           },
           // secondary: {
-          //   main: prefersDarkMode ? "#00DDAA" : "#00B0FF",
+          //   main: prefersDarkMode ? "#00DDAA" : "#EE7633",
           // },
           // background: {
           //   default: prefersDarkMode ? "#000014" : "#FAFAFA",

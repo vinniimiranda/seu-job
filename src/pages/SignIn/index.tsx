@@ -1,38 +1,56 @@
 import React from 'react';
 import { Box, Button, Grid, FormControl, InputLabel, Input } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
-import { ReactComponent as SignInBG } from '../../assets/images/signin_bg.svg'
+
 import { useResponsive } from '../../hooks/useResponsive';
+import Logo from '../../components/Logo';
+import SignInBG from '../../components/SignInBG';
+
 
 const SignIn: React.FC = () => {
 
   const responsive = useResponsive(528);
-
   const theme = useTheme();
-  console.log(theme);
+
 
   return (
     <Box display="flex" height="100vh">
-      <Box bgcolor="#00BFA6" flex={1} padding="4rem" style={{
+      <Box bgcolor={theme.palette.primary.main} flex={1} padding="4rem" style={{
         display: responsive ? "none" : "flex"
-      }} flexDirection="column" justifyContent="center" >
-        <Box display="flex" flexDirection="column" alignItems="flex-end" padding="4rem"  >
-          <h1 style={{
-            fontSize: '3rem',
-            color: "#fff",
-            margin: 0
-          }}>SEU JOB</h1>
+      }} flexDirection="column" justifyContent="space-between" flexWrap="wrap" >
+        <Box display="flex" flexDirection="column" alignItems="flex-end" paddingRight="4rem" >
+          <Box display="flex" alignItems="center">
+            <Logo color={theme.palette.background.default} />
+            <h1 style={{
+              fontSize: '2.5rem',
+              color: theme.palette.background.default,
+              margin: 0,
+              marginLeft: '1rem'
+            }}>SEU JOB</h1>
+          </Box>
           <h2 style={{
-            color: "#fff",
+            color: theme.palette.background.default,
             fontSize: '2rem',
-            fontWeight: "normal"
+            fontWeight: "normal",
+            margin: 0,
+            marginTop: '1rem'
           }}>Encontre a vaga perfeita para você!</h2>
 
         </Box>
-        <SignInBG width="100%" />
+        <SignInBG />
+        <Box display="flex" justifyContent="center">
+          <h2 style={{
+            color: theme.palette.background.default,
+            fontWeight: "normal",
+            margin: 0,
+            // marginTop: '1rem'
+          }}>
+            Todos direitos reservados &copy; 2020
+          </h2>
+        </Box>
       </Box>
       <Box justifyContent="center"
-
+        boxShadow={theme.palette.type === "dark" ? "0px 4px 15px rgba(90,90,90,.1)" : "0px 4px 15px rgba(0,0,0,.1)"}
         maxWidth={responsive ? "100%" : "20rem"} padding="1rem 2rem" display="flex" flexDirection="column" height="100%">
         <Grid container spacing={3} style={{
           boxShadow: responsive ? theme.palette.type === "dark" ? "0px 4px 15px rgba(90,90,90,.1)" : "0px 4px 15px rgba(0,0,0,.1)" : "",
@@ -44,7 +62,12 @@ const SignIn: React.FC = () => {
 
         >
           <Grid item md={12} xs={12}>
-            <h1 style={{ textAlign: "center", color: "#00BFA6" }}>LOGIN</h1>
+            <Box display="flex" justifyContent="center">
+              <Logo color={theme.palette.primary.main} />
+            </Box>
+          </Grid>
+          <Grid item md={12} xs={12}>
+            <h1 style={{ textAlign: "center", color: theme.palette.primary.main }}>LOGIN</h1>
           </Grid>
           <Grid item md={12} xs={12}>
             <FormControl fullWidth variant="filled">
