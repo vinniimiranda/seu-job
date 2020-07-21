@@ -50,6 +50,7 @@ const SignIn: React.FC = () => {
             <FormControl fullWidth variant="filled">
               <InputLabel htmlFor="email">E-mail</InputLabel>
               <Input
+                autoFocus
                 id="email"
                 autoComplete="off"
               />
@@ -66,7 +67,7 @@ const SignIn: React.FC = () => {
             </FormControl>
           </Grid>
           <Grid item md={12} xs={12}>
-            <Button fullWidth variant="contained" color="primary">Entrar</Button>
+            <Button size="large" fullWidth variant="contained" color="primary">Entrar</Button>
           </Grid>
         </Grid>
       </Box>
