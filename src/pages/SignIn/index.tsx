@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Grid, FormControl, InputLabel, Input } from '@material-ui/core';
+import { Box, Button, Grid, FormControl, InputLabel, Input, Checkbox, FormControlLabel, Link } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 
 import { useResponsive } from '../../hooks/useResponsive';
@@ -89,8 +89,24 @@ const SignIn: React.FC = () => {
               />
             </FormControl>
           </Grid>
+
+          <Grid item md={12} xs={12}>
+            <FormControlLabel
+              control={<Checkbox color={"primary"} checked name="rember" />}
+              label="Lembrar de mim?"
+            />
+          </Grid>
+
           <Grid item md={12} xs={12}>
             <Button size="large" fullWidth variant="contained" color="primary">Entrar</Button>
+          </Grid>
+          <Grid item md={12} xs={12}>
+            <Link style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', width: '100%' }} component="button"
+              variant="body2"> Esqueceu sua sennha?</Link>
+          </Grid>
+          <Grid item md={12} xs={12}>
+            <Link style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', width: '100%' }} component="button"
+              variant="body1">Criar conta</Link>
           </Grid>
         </Grid>
       </Box>
