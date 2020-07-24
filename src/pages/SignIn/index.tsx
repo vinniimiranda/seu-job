@@ -1,17 +1,19 @@
 import React from 'react';
-import { Box, Button, Grid, FormControl, InputLabel, Input, Checkbox, FormControlLabel, Link } from '@material-ui/core';
+import { Box, Button, Grid, FormControl, InputLabel, Input, Checkbox, FormControlLabel, Link, Switch } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 
 import { useResponsive } from '../../hooks/useResponsive';
 import Logo from '../../components/Logo';
 import SignInBG from '../../components/SignInBG';
+import { useThemeUpdate, useTheme as useThemeDarkMode } from '../../context/ThemeContext';
 
 
 const SignIn: React.FC = () => {
 
   const responsive = useResponsive(528);
   const theme = useTheme();
-
+  const darkMode = useThemeDarkMode()
+  const toggleTheme = useThemeUpdate()
 
   return (
     <Box display="flex" height="100vh">
@@ -49,66 +51,73 @@ const SignIn: React.FC = () => {
           </h2>
         </Box>
       </Box>
-      <Box justifyContent="center"
-        boxShadow={theme.palette.type === "dark" ? "0px 4px 15px rgba(90,90,90,.1)" : "0px 4px 15px rgba(0,0,0,.1)"}
-        maxWidth={responsive ? "100%" : "20rem"} padding="1rem 2rem" display="flex" flexDirection="column" height="100%">
-        <Grid container spacing={3} style={{
-          boxShadow: responsive ? theme.palette.type === "dark" ? "0px 4px 15px rgba(90,90,90,.1)" : "0px 4px 15px rgba(0,0,0,.1)" : "",
-          backgroundColor: responsive ? theme.palette.background.paper : theme.palette.background.default,
-          padding: responsive ? "2rem .5rem" : "",
-          borderRadius: '.5rem'
-        }
-        }
+      <Box display="flex" flexDirection="column">
+        <Box display="flex" justifyContent="flex-end">
+          <Switch checked={darkMode} color="primary" onChange={toggleTheme} size="medium" />
+        </Box>
 
-        >
-          <Grid item md={12} xs={12}>
-            <Box display="flex" justifyContent="center">
-              <Logo color={theme.palette.primary.main} />
-            </Box>
-          </Grid>
-          <Grid item md={12} xs={12}>
-            <h1 style={{ textAlign: "center", color: theme.palette.primary.main }}>LOGIN</h1>
-          </Grid>
-          <Grid item md={12} xs={12}>
-            <FormControl fullWidth variant="standard">
-              <InputLabel htmlFor="email">E-mail</InputLabel>
-              <Input
-                autoFocus
-                id="email"
-                autoComplete="off"
+        <Box justifyContent="center"
+          boxShadow={theme.palette.type === "dark" ? "0px 20px 15px rgba(90,90,90,.1)" : "0px 20px 15px rgba(0,0,0,.1)"}
+          maxWidth={responsive ? "100%" : "20rem"} padding="1rem 2rem" display="flex" flexDirection="column" height="100%">
+
+          <Grid container spacing={3} style={{
+            boxShadow: responsive ? theme.palette.type === "dark" ? "0px 4px 15px rgba(90,90,90,.1)" : "0px 4px 15px rgba(0,0,0,.1)" : "",
+            backgroundColor: responsive ? theme.palette.background.paper : theme.palette.background.default,
+            padding: responsive ? "2rem .5rem" : "",
+            borderRadius: '.5rem'
+          }
+          }
+
+          >
+            <Grid item md={12} xs={12}>
+              <Box display="flex" justifyContent="center">
+                <Logo color={theme.palette.primary.main} />
+              </Box>
+            </Grid>
+            <Grid item md={12} xs={12}>
+              <h1 style={{ textAlign: "center", color: theme.palette.primary.main }}>LOGIN</h1>
+            </Grid>
+            <Grid item md={12} xs={12}>
+              <FormControl fullWidth variant="standard">
+                <InputLabel htmlFor="email">E-mail</InputLabel>
+                <Input
+                  autoFocus
+                  id="email"
+                  autoComplete="off"
+                />
+              </FormControl>
+            </Grid>
+            <Grid item md={12} xs={12}>
+              <FormControl fullWidth variant="standard">
+                <InputLabel htmlFor="password">Senha</InputLabel>
+                <Input
+                  id="password"
+                  type="password"
+                  autoComplete="current-password"
+                />
+              </FormControl>
+            </Grid>
+
+            <Grid item md={12} xs={12}>
+              <FormControlLabel
+                control={<Checkbox color={"primary"} checked name="rember" />}
+                label="Lembrar de mim?"
               />
-            </FormControl>
-          </Grid>
-          <Grid item md={12} xs={12}>
-            <FormControl fullWidth variant="standard">
-              <InputLabel htmlFor="password">Senha</InputLabel>
-              <Input
-                id="password"
-                type="password"
-                autoComplete="current-password"
-              />
-            </FormControl>
-          </Grid>
+            </Grid>
 
-          <Grid item md={12} xs={12}>
-            <FormControlLabel
-              control={<Checkbox color={"primary"} checked name="rember" />}
-              label="Lembrar de mim?"
-            />
+            <Grid item md={12} xs={12}>
+              <Button size="large" fullWidth variant="contained" color="primary">Entrar</Button>
+            </Grid>
+            <Grid item md={12} xs={12}>
+              <Link style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', width: '100%' }} component="button"
+                variant="body2"> Esqueceu sua sennha?</Link>
+            </Grid>
+            <Grid item md={12} xs={12}>
+              <Link style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', width: '100%' }} component="button"
+                variant="body1">Criar conta</Link>
+            </Grid>
           </Grid>
-
-          <Grid item md={12} xs={12}>
-            <Button size="large" fullWidth variant="contained" color="primary">Entrar</Button>
-          </Grid>
-          <Grid item md={12} xs={12}>
-            <Link style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', width: '100%' }} component="button"
-              variant="body2"> Esqueceu sua sennha?</Link>
-          </Grid>
-          <Grid item md={12} xs={12}>
-            <Link style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', width: '100%' }} component="button"
-              variant="body1">Criar conta</Link>
-          </Grid>
-        </Grid>
+        </Box>
       </Box>
     </Box>
   );

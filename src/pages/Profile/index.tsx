@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import { Box, Grid, FormControl, InputLabel, Input, FormControlLabel, Checkbox, useTheme } from '@material-ui/core';
 
 const Profile: React.FC = () => {
   const theme = useTheme()
+  const [isReady, setIsReady] = useState(true)
+
+  const fetchData = useCallback(
+    () => {
+      if (isReady) {
+        alert('olá')
+        setIsReady(false)
+      }
+    },
+    [isReady],
+  )
+  useEffect(() => {
+    fetchData()
+
+  }, [fetchData])
+
   return <Box display="flex" flexDirection="column">
     <Box>
       <h1
