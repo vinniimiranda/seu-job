@@ -26,7 +26,7 @@ const RouteWrapper: React.FC<Props> = ({ component: Component, isPrivate = false
   const signed = true
 
   if (!signed && isPrivate) {
-    return <Redirect to="/signin" />
+    return <Redirect to="/" />
   }
   if (signed && !isPrivate) {
     return <Redirect to="/jobs" />
