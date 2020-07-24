@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import Route from './Route';
 import { Switch } from 'react-router';
+import Loader from '../components/Loader';
 
 const SignIn = lazy(() => import('../pages/SignIn'))
 const Jobs = lazy(() => import('../pages/Jobs'))
@@ -10,7 +11,7 @@ const Chat = lazy(() => import('../pages/Chat'))
 
 export default function Routes () {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loader />}>
       <Switch>
         <Route path='/' exact component={props => <SignIn {...props} />} />
         <Route path='/jobs' exact component={props => <Jobs {...props} />} isPrivate />
