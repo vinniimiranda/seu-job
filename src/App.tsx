@@ -7,7 +7,7 @@ import Routes from './routes/index'
 import history from './services/history'
 
 const ThemeContext: React.FC = () => {
-  const prefersDarkMode = false;
+  const prefersDarkMode = true;
   const theme = React.useMemo(
     () =>
       createMuiTheme({

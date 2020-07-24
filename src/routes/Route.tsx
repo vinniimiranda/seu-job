@@ -3,15 +3,20 @@ import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import Nav from '../components/Nav'
 import { Box } from '@material-ui/core'
+import { useResponsive } from '../hooks/useResponsive'
 
-const DefaultLayout: React.FC = ({ children }) => (
-  <Box display="flex">
-    <Nav />
-    <Box padding="1rem 2rem" width="100%" marginLeft="6rem">
-      {children}
+const DefaultLayout: React.FC = ({ children }) => {
+  const responsive = useResponsive(528)
+
+  return (
+    <Box display="flex">
+      {!responsive && <Nav />}
+      <Box padding={responsive ? ".5rem .75rem" : "1rem 2rem"} width="100%" marginLeft={responsive ? 0 : "6rem"}>
+        {children}
+      </Box>
     </Box>
-  </Box>
-)
+  )
+}
 const AuthLayout: React.FC = ({ children }) => <>{children}</>
 
 type Props = {
