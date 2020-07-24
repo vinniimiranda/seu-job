@@ -7,7 +7,7 @@ import { Box } from '@material-ui/core'
 const DefaultLayout: React.FC = ({ children }) => (
   <Box display="flex">
     <Nav />
-    <Box padding="1rem 2rem">
+    <Box padding="1rem 2rem" width="100%" marginLeft="6rem">
       {children}
     </Box>
   </Box>
