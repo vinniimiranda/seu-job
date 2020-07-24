@@ -8,7 +8,7 @@ const Profile: React.FC = () => {
   const fetchData = useCallback(
     () => {
       if (isReady) {
-        alert('olá')
+        // alert('olá')
         setIsReady(false)
       }
     },
