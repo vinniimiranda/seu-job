@@ -5,9 +5,13 @@ const Profile: React.FC = () => {
   const theme = useTheme()
   return <Box display="flex" flexDirection="column">
     <Box>
-      <h1 style={{
-        color: theme.palette.primary.main
-      }}>Currículo</h1>
+      <h1
+        style={{
+          color: theme.palette.primary.main
+        }}
+      >
+        Currículo
+      </h1>
     </Box>
     <Box display="flex" flexDirection="column">
       <h2 style={{
@@ -15,7 +19,7 @@ const Profile: React.FC = () => {
       }}>Dados Pessoais</h2>
       <Grid container spacing={2}>
         <Grid item lg={3} md={4} xs={12}>
-          <FormControl fullWidth>
+          <FormControl fullWidth variant="standard">
             <InputLabel htmlFor="name">Nome</InputLabel>
             <Input
 
@@ -25,7 +29,7 @@ const Profile: React.FC = () => {
           </FormControl>
         </Grid>
         <Grid item lg={3} md={4} xs={12}>
-          <FormControl fullWidth>
+          <FormControl fullWidth variant="standard">
             <InputLabel htmlFor="emal">E-mail</InputLabel>
             <Input
 
@@ -35,7 +39,7 @@ const Profile: React.FC = () => {
           </FormControl>
         </Grid>
         <Grid item lg={2} md={2} xs={12}>
-          <FormControl fullWidth>
+          <FormControl fullWidth variant="standard">
             <InputLabel htmlFor="document">CPF</InputLabel>
             <Input
 
@@ -45,7 +49,7 @@ const Profile: React.FC = () => {
           </FormControl>
         </Grid>
         <Grid item lg={2} md={2} xs={12}>
-          <FormControl fullWidth>
+          <FormControl fullWidth variant="standard">
             <InputLabel htmlFor="document">RG</InputLabel>
             <Input
 
@@ -55,7 +59,7 @@ const Profile: React.FC = () => {
           </FormControl>
         </Grid>
         <Grid item lg={2} md={3} xs={12}>
-          <FormControl fullWidth>
+          <FormControl fullWidth variant="standard">
             <InputLabel htmlFor="document">Data de Nascimento</InputLabel>
             <Input
 
@@ -72,7 +76,7 @@ const Profile: React.FC = () => {
       }}>Contato e Endereço</h2>
       <Grid container spacing={2}>
         <Grid item lg={2} md={3} xs={12}>
-          <FormControl fullWidth>
+          <FormControl fullWidth variant="standard">
             <InputLabel htmlFor="name">Logradouro</InputLabel>
             <Input
 
@@ -82,7 +86,7 @@ const Profile: React.FC = () => {
           </FormControl>
         </Grid>
         <Grid item lg={1} md={1} xs={12}>
-          <FormControl fullWidth>
+          <FormControl fullWidth variant="standard">
             <InputLabel htmlFor="emal">Número</InputLabel>
             <Input
 
@@ -92,7 +96,7 @@ const Profile: React.FC = () => {
           </FormControl>
         </Grid>
         <Grid item lg={2} md={3} xs={12}>
-          <FormControl fullWidth>
+          <FormControl fullWidth variant="standard">
             <InputLabel htmlFor="document">Bairro</InputLabel>
             <Input
 
@@ -102,7 +106,7 @@ const Profile: React.FC = () => {
           </FormControl>
         </Grid>
         <Grid item lg={2} md={3} xs={12}>
-          <FormControl fullWidth>
+          <FormControl fullWidth variant="standard">
             <InputLabel htmlFor="document">Cidade</InputLabel>
             <Input
 
@@ -112,7 +116,7 @@ const Profile: React.FC = () => {
           </FormControl>
         </Grid>
         <Grid item lg={1} md={1} xs={12}>
-          <FormControl fullWidth>
+          <FormControl fullWidth variant="standard">
             <InputLabel htmlFor="document">UF</InputLabel>
             <Input
 
@@ -122,7 +126,7 @@ const Profile: React.FC = () => {
           </FormControl>
         </Grid>
         <Grid item lg={2} md={2} xs={12}>
-          <FormControl fullWidth>
+          <FormControl fullWidth variant="standard">
             <InputLabel htmlFor="document">Celular</InputLabel>
             <Input
 
@@ -132,7 +136,7 @@ const Profile: React.FC = () => {
           </FormControl>
         </Grid>
         <Grid item lg={2} md={2} xs={12}>
-          <FormControl fullWidth>
+          <FormControl fullWidth variant="standard">
             <InputLabel htmlFor="document">Telefone</InputLabel>
             <Input
 

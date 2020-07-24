@@ -70,7 +70,7 @@ const SignIn: React.FC = () => {
             <h1 style={{ textAlign: "center", color: theme.palette.primary.main }}>LOGIN</h1>
           </Grid>
           <Grid item md={12} xs={12}>
-            <FormControl fullWidth variant="filled">
+            <FormControl fullWidth variant="standard">
               <InputLabel htmlFor="email">E-mail</InputLabel>
               <Input
                 autoFocus
@@ -80,7 +80,7 @@ const SignIn: React.FC = () => {
             </FormControl>
           </Grid>
           <Grid item md={12} xs={12}>
-            <FormControl fullWidth variant="filled">
+            <FormControl fullWidth variant="standard">
               <InputLabel htmlFor="password">Senha</InputLabel>
               <Input
                 id="password"
