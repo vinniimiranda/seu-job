@@ -1,15 +1,15 @@
 import React from 'react';
-import { Box, Button, Grid, FormControl, InputLabel, Input, Checkbox, FormControlLabel, Link, Switch } from '@material-ui/core';
+import { Box, Button, Grid, FormControl, InputLabel, Input, Link, Switch, RadioGroup, FormControlLabel, Radio } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 
 import { useResponsive } from '../../hooks/useResponsive';
 import Logo from '../../components/Logo';
-import SignInBG from '../../components/SignInBG';
+import SignUpBG from '../../components/SignUpBG';
 import { useThemeUpdate, useTheme as useThemeDarkMode } from '../../context/ThemeContext';
 import history from '../../services/history';
 
 
-const SignIn: React.FC = () => {
+const SignUp: React.FC = () => {
 
   const responsive = useResponsive(528);
   const theme = useTheme();
@@ -40,7 +40,7 @@ const SignIn: React.FC = () => {
           }}>Encontre a vaga perfeita para você!</h2>
 
         </Box>
-        <SignInBG />
+        <SignUpBG />
         <Box display="flex" justifyContent="center">
           <h2 style={{
             color: theme.palette.background.default,
@@ -68,7 +68,6 @@ const SignIn: React.FC = () => {
             borderRadius: '.5rem'
           }
           }
-
           >
             <Grid item md={12} xs={12}>
               <Box display="flex" justifyContent="center">
@@ -76,7 +75,7 @@ const SignIn: React.FC = () => {
               </Box>
             </Grid>
             <Grid item md={12} xs={12}>
-              <h1 style={{ textAlign: "center", color: theme.palette.primary.main }}>LOGIN</h1>
+              <h1 style={{ textAlign: "center", color: theme.palette.primary.main }}>CADASTRO</h1>
             </Grid>
             <Grid item md={12} xs={12}>
               <FormControl fullWidth variant="standard">
@@ -98,24 +97,36 @@ const SignIn: React.FC = () => {
                 />
               </FormControl>
             </Grid>
-
             <Grid item md={12} xs={12}>
-              <FormControlLabel
-                control={<Checkbox color={"primary"} checked name="rember" />}
-                label="Lembrar de mim?"
-              />
+              <FormControl component="div">
+                <RadioGroup aria-label="gender"
+                  name="role" style={{
+                    display: "flex",
+                    flexDirection: 'row'
+                  }}>
+                  <FormControlLabel value="candidate" labelPlacement="end" control={<Radio color="primary" />} label="Candidato" />
+                  <FormControlLabel value="recruiter" labelPlacement="end" control={<Radio color="primary" />} label="Recrutador" />
+                </RadioGroup>
+              </FormControl>
             </Grid>
 
             <Grid item md={12} xs={12}>
-              <Button size="large" fullWidth variant="contained" color="primary">Entrar</Button>
+              <Box display="flex" justifyContent="center" alignItems="center" >
+
+                <span style={{ fontSize: '1.1rem', textAlign: "center" }}>
+                  Ao se cadastrar você concorda com os <Link component="button" variant="body1">Termos de Serviço.</Link>
+                </span>
+              </Box>
+
             </Grid>
+
             <Grid item md={12} xs={12}>
-              <Link style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', width: '100%' }} component="button"
-                variant="body2"> Esqueceu sua sennha?</Link>
+              <Button size="large" fullWidth variant="contained" color="primary">Criar conta</Button>
             </Grid>
+
             <Grid item md={12} xs={12}>
-              <Link onClick={() => history.push('/signup')} style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', width: '100%' }} component="button"
-                variant="body1">Criar conta</Link>
+              <Link onClick={() => history.push('/')} style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', width: '100%' }} component="button"
+                variant="body1">Já tem uma conta?</Link>
             </Grid>
           </Grid>
         </Box>
@@ -124,4 +135,4 @@ const SignIn: React.FC = () => {
   );
 }
 
-export default SignIn;
+export default SignUp;

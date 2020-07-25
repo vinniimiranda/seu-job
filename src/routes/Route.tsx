@@ -33,7 +33,7 @@ type Props = {
 
 const RouteWrapper: React.FC<Props> = ({ component: Component, isPrivate = false, ...rest }) => {
 
-  const signed = true
+  const signed = false
 
   if (!signed && isPrivate) {
     return <Redirect to="/" />
