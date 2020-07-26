@@ -1,5 +1,5 @@
-import React from 'react';
-import { Box, Button, Grid, FormControl, InputLabel, Input, Checkbox, FormControlLabel, Link, Switch } from '@material-ui/core';
+import React, { useState } from 'react';
+import { Box, Button, Grid, FormControl, InputLabel, Input, Checkbox, FormControlLabel, Link, Switch, CircularProgress } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 
 import { useResponsive } from '../../hooks/useResponsive';
@@ -7,14 +7,27 @@ import Logo from '../../components/Logo';
 import SignInBG from '../../components/SignInBG';
 import { useThemeUpdate, useTheme as useThemeDarkMode } from '../../context/ThemeContext';
 import history from '../../services/history';
+import { useDispatch, useSelector } from 'react-redux';
+import { signInRequest } from '../../store/modules/auth/actions';
+import { RootState } from '../../types/state';
 
 
 const SignIn: React.FC = () => {
+  const dispatch = useDispatch()
 
   const responsive = useResponsive(528);
   const theme = useTheme();
   const darkMode = useThemeDarkMode()
   const toggleTheme = useThemeUpdate()
+
+  const [email, setEmail] = useState('vmmm@gmail.com')
+  const [password, setPassword] = useState('123456')
+
+  const { loading } = useSelector((state: RootState) => state.auth)
+
+  function handleSubmit () {
+    dispatch(signInRequest(email, password))
+  }
 
   return (
     <Box display="flex" height="100vh">
@@ -82,6 +95,8 @@ const SignIn: React.FC = () => {
               <FormControl fullWidth variant="standard">
                 <InputLabel htmlFor="email">E-mail</InputLabel>
                 <Input
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   autoFocus
                   id="email"
                   autoComplete="off"
@@ -92,6 +107,8 @@ const SignIn: React.FC = () => {
               <FormControl fullWidth variant="standard">
                 <InputLabel htmlFor="password">Senha</InputLabel>
                 <Input
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   id="password"
                   type="password"
                   autoComplete="current-password"
@@ -107,7 +124,9 @@ const SignIn: React.FC = () => {
             </Grid>
 
             <Grid item md={12} xs={12}>
-              <Button size="large" fullWidth variant="contained" color="primary">Entrar</Button>
+              <Button size="large" onClick={handleSubmit} fullWidth variant="contained" color="primary">
+                {loading ? <CircularProgress color="inherit" size="1.65rem" /> : "Entrar"}
+              </Button>
             </Grid>
             <Grid item md={12} xs={12}>
               <Link style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', width: '100%' }} component="button"

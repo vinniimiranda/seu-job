@@ -5,6 +5,7 @@ import Nav from '../components/Nav'
 import { Box, Switch } from '@material-ui/core'
 import { useResponsive } from '../hooks/useResponsive'
 import { useThemeUpdate, useTheme } from '../context/ThemeContext'
+import { store } from '../store'
 
 const DefaultLayout: React.FC = ({ children }) => {
   const responsive = useResponsive(528)
@@ -33,7 +34,8 @@ type Props = {
 
 const RouteWrapper: React.FC<Props> = ({ component: Component, isPrivate = false, ...rest }) => {
 
-  const signed = false
+  //@ts-ignore
+  const { signed } = store.getState().auth
 
   if (!signed && isPrivate) {
     return <Redirect to="/" />

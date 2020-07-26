@@ -2,7 +2,11 @@ import React from 'react';
 import { Box, useTheme, Avatar, List, ListItem, ListItemIcon } from '@material-ui/core';
 import { List as ListIcon, Description, Chat, ExitToApp } from '@material-ui/icons'
 import history from '../../services/history';
+import { useDispatch } from 'react-redux';
+import { signOut } from '../../store/modules/auth/actions';
 const Nav: React.FC = () => {
+  const dispatch = useDispatch()
+
   const theme = useTheme()
 
   const routes = [
@@ -11,6 +15,10 @@ const Nav: React.FC = () => {
     { path: '/chat', icon: () => <Chat style={{ fontSize: '1.75rem', color: theme.palette.background.default }} /> },
   ]
 
+
+  function handleLogout () {
+    dispatch(signOut())
+  }
 
   return <Box width="6rem" position="fixed" height="100vh" bgcolor={theme.palette.primary.main}>
     <Box display="flex" flexDirection="column" padding="1rem 0" justifyContent="space-between" alignItems="center" height="100%">
@@ -38,7 +46,7 @@ const Nav: React.FC = () => {
       </Box>
       <Box justifySelf="center" alignSelf="center" style={{ width: "100%" }}>
         <List component="ul">
-          <ListItem component="li" onClick={() => alert('Saindo....')} button style={{ margin: '1.5rem 0 0 0' }}>
+          <ListItem component="li" onClick={handleLogout} button style={{ margin: '1.5rem 0 0 0' }}>
             <ListItemIcon style={{ display: 'flex', width: '100%', justifyContent: "center", margin: 0, padding: 0 }}>
               <ExitToApp style={{ fontSize: '1.75rem', color: theme.palette.background.default }} />
             </ListItemIcon>
