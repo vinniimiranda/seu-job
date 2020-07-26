@@ -19,13 +19,26 @@ export function* signIn ({ payload }: ReturnType<typeof signInRequest>) {
 
     history.push('/jobs')
   } catch (error) {
-    yield put(enqueueSnackbar({
-      message: error.response.data.errors[0].message,
-      options: {
-        key: new Date().getTime() + Math.random(),
-        variant: 'error',
-      },
-    }))
+
+
+    if (error.response?.data?.errors) {
+      yield put(enqueueSnackbar({
+        message: error.response.data.errors[0].message,
+        options: {
+          key: new Date().getTime() + Math.random(),
+          variant: 'error',
+        },
+      }))
+    }
+    else {
+      yield put(enqueueSnackbar({
+        message: "Internal server error",
+        options: {
+          key: new Date().getTime() + Math.random(),
+          variant: 'error',
+        },
+      }))
+    }
 
     yield put(signFailure())
   }
