@@ -11,7 +11,7 @@ const ThemeContext = createContext(false)
 const ThemeUpdateContext = createContext(() => { })
 
 const ThemeProvider: React.FC = ({ children }) => {
-  const [darkTheme, setDarkTheme] = useState(false)
+  const [darkTheme, setDarkTheme] = useState(true)
 
   function toggleTheme () {
     setDarkTheme(prevDarkTheme => !prevDarkTheme)

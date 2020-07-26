@@ -4,7 +4,7 @@ import { signInSuccess, signFailure, signInRequest, resetPasswordRequest, signUp
 import { API } from '../../../services/api'
 import history from '../../../services/history'
 import { RootState } from '../../../types/state';
-import { enqueueSnackbar } from '../notifier/actions';
+import { enqueueSnackbar, closeSnackbar } from '../notifier/actions';
 
 export function* signIn ({ payload }: ReturnType<typeof signInRequest>) {
   try {
@@ -15,6 +15,7 @@ export function* signIn ({ payload }: ReturnType<typeof signInRequest>) {
 
     yield put(signInSuccess(token, { ...response.data }))
 
+    yield put(closeSnackbar(null))
 
     history.push('/jobs')
   } catch (error) {
