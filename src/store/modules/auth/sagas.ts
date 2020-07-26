@@ -14,18 +14,17 @@ export function* signIn ({ payload }: ReturnType<typeof signInRequest>) {
     API.defaults.headers.Authorization = `Bearer ${token}`
 
     yield put(signInSuccess(token, { ...response.data }))
-    yield put(enqueueSnackbar({
-      message: 'Failed fetching data.',
-      options: {
-        key: new Date().getTime() + Math.random(),
-        variant: 'error',
 
-      },
-    }))
 
     history.push('/jobs')
   } catch (error) {
-    console.log(error);
+    yield put(enqueueSnackbar({
+      message: error.response.data.errors[0].message,
+      options: {
+        key: new Date().getTime() + Math.random(),
+        variant: 'error',
+      },
+    }))
 
     yield put(signFailure())
   }
