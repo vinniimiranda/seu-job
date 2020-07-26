@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Button, Grid, FormControl, InputLabel, Input, Checkbox, FormControlLabel, Link, Switch, CircularProgress } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 
@@ -10,7 +10,12 @@ import history from '../../services/history';
 import { useDispatch, useSelector } from 'react-redux';
 import { signInRequest } from '../../store/modules/auth/actions';
 import { RootState } from '../../types/state';
+import { useForm } from 'react-hook-form';
 
+interface IFormInput {
+  email: string;
+  password: string;
+}
 
 const SignIn: React.FC = () => {
   const dispatch = useDispatch()
@@ -20,14 +25,16 @@ const SignIn: React.FC = () => {
   const darkMode = useThemeDarkMode()
   const toggleTheme = useThemeUpdate()
 
-  const [email, setEmail] = useState('vmmm@gmail.com')
-  const [password, setPassword] = useState('123456')
+  const { register, handleSubmit, errors } = useForm<IFormInput>();
+
+  const onSubmit = (data: IFormInput) => {
+    const { email, password } = data;
+    dispatch(signInRequest(email, password))
+  };
 
   const { loading } = useSelector((state: RootState) => state.auth)
 
-  function handleSubmit () {
-    dispatch(signInRequest(email, password))
-  }
+
 
   return (
     <Box display="flex" height="100vh">
@@ -73,70 +80,71 @@ const SignIn: React.FC = () => {
         <Box justifyContent="center"
           boxShadow={theme.palette.type === "dark" ? "0px 20px 15px rgba(90,90,90,.1)" : "0px 20px 15px rgba(0,0,0,.1)"}
           maxWidth={responsive ? "100%" : "20rem"} padding="1rem 2rem" display="flex" flexDirection="column" height="100%">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Grid container spacing={3} style={{
+              boxShadow: responsive ? theme.palette.type === "dark" ? "0px 4px 15px rgba(90,90,90,.1)" : "0px 4px 15px rgba(0,0,0,.1)" : "",
+              backgroundColor: responsive ? theme.palette.background.paper : theme.palette.background.default,
+              padding: responsive ? "2rem .5rem" : "",
+              borderRadius: '.5rem'
+            }
+            }
 
-          <Grid container spacing={3} style={{
-            boxShadow: responsive ? theme.palette.type === "dark" ? "0px 4px 15px rgba(90,90,90,.1)" : "0px 4px 15px rgba(0,0,0,.1)" : "",
-            backgroundColor: responsive ? theme.palette.background.paper : theme.palette.background.default,
-            padding: responsive ? "2rem .5rem" : "",
-            borderRadius: '.5rem'
-          }
-          }
+            >
+              <Grid item md={12} xs={12}>
+                <Box display="flex" justifyContent="center">
+                  <Logo color={theme.palette.primary.main} />
+                </Box>
+              </Grid>
+              <Grid item md={12} xs={12}>
+                <h1 style={{ textAlign: "center", color: theme.palette.primary.main }}>LOGIN</h1>
+              </Grid>
+              <Grid item md={12} xs={12}>
+                <FormControl fullWidth variant="standard">
+                  <InputLabel error={!!errors.email} required htmlFor="email">E-mail</InputLabel>
+                  <Input error={!!errors.email}
+                    autoFocus
+                    id="email"
+                    autoComplete="off"
+                    name="email"
+                    inputRef={register({ required: true })}
+                  />
+                </FormControl>
+              </Grid>
+              <Grid item md={12} xs={12}>
+                <FormControl fullWidth variant="standard">
+                  <InputLabel error={!!errors.password} required htmlFor="password">Senha</InputLabel>
+                  <Input error={!!errors.password}
+                    id="password"
+                    type="password"
+                    autoComplete="current-password"
+                    name="password"
+                    inputRef={register({ required: true })}
+                  />
+                </FormControl>
+              </Grid>
 
-          >
-            <Grid item md={12} xs={12}>
-              <Box display="flex" justifyContent="center">
-                <Logo color={theme.palette.primary.main} />
-              </Box>
-            </Grid>
-            <Grid item md={12} xs={12}>
-              <h1 style={{ textAlign: "center", color: theme.palette.primary.main }}>LOGIN</h1>
-            </Grid>
-            <Grid item md={12} xs={12}>
-              <FormControl fullWidth variant="standard">
-                <InputLabel htmlFor="email">E-mail</InputLabel>
-                <Input
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  autoFocus
-                  id="email"
-                  autoComplete="off"
+              <Grid item md={12} xs={12}>
+                <FormControlLabel
+                  control={<Checkbox color={"primary"} checked name="rember" />}
+                  label="Lembrar de mim?"
                 />
-              </FormControl>
-            </Grid>
-            <Grid item md={12} xs={12}>
-              <FormControl fullWidth variant="standard">
-                <InputLabel htmlFor="password">Senha</InputLabel>
-                <Input
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  id="password"
-                  type="password"
-                  autoComplete="current-password"
-                />
-              </FormControl>
-            </Grid>
+              </Grid>
 
-            <Grid item md={12} xs={12}>
-              <FormControlLabel
-                control={<Checkbox color={"primary"} checked name="rember" />}
-                label="Lembrar de mim?"
-              />
+              <Grid item md={12} xs={12}>
+                <Button size="large" type="submit" fullWidth variant="contained" color="primary">
+                  {loading ? <CircularProgress color="inherit" size="1.65rem" /> : "Entrar"}
+                </Button>
+              </Grid>
+              <Grid item md={12} xs={12}>
+                <Link style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', width: '100%' }} component="button"
+                  variant="body2"> Esqueceu sua sennha?</Link>
+              </Grid>
+              <Grid item md={12} xs={12}>
+                <Link onClick={() => history.push('/signup')} style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', width: '100%' }} component="button"
+                  variant="body1">Criar conta</Link>
+              </Grid>
             </Grid>
-
-            <Grid item md={12} xs={12}>
-              <Button size="large" onClick={handleSubmit} fullWidth variant="contained" color="primary">
-                {loading ? <CircularProgress color="inherit" size="1.65rem" /> : "Entrar"}
-              </Button>
-            </Grid>
-            <Grid item md={12} xs={12}>
-              <Link style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', width: '100%' }} component="button"
-                variant="body2"> Esqueceu sua sennha?</Link>
-            </Grid>
-            <Grid item md={12} xs={12}>
-              <Link onClick={() => history.push('/signup')} style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', width: '100%' }} component="button"
-                variant="body1">Criar conta</Link>
-            </Grid>
-          </Grid>
+          </form>
         </Box>
       </Box>
     </Box>

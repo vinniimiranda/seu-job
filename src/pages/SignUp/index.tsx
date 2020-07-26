@@ -1,4 +1,5 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
+import { useForm } from "react-hook-form";
 import { Box, Button, Grid, FormControl, InputLabel, Input, Link, Switch, RadioGroup, FormControlLabel, Radio, CircularProgress } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,6 +12,13 @@ import history from '../../services/history';
 import { RootState } from '../../types/state';
 import { signUpRequest } from '../../store/modules/auth/actions';
 
+interface IFormInput {
+  name: string;
+  email: string;
+  password: string;
+  role: string;
+}
+
 
 const SignUp: React.FC = () => {
   const dispatch = useDispatch()
@@ -20,22 +28,12 @@ const SignUp: React.FC = () => {
   const darkMode = useThemeDarkMode()
   const toggleTheme = useThemeUpdate()
 
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [role, setRole] = useState('')
-
-  const formRef = useRef<HTMLFormElement>() as React.MutableRefObject<HTMLFormElement>
-
   const { loading } = useSelector((state: RootState) => state.auth)
 
-  function handleSubmit (e) {
-    e.preventDefault()
-
-
-    dispatch(signUpRequest(name, email, password, role))
-
-  }
+  const { register, handleSubmit, errors } = useForm<IFormInput>();
+  const onSubmit = (data: IFormInput) => {
+    dispatch(signUpRequest(data))
+  };
 
   return (
     <Box display="flex" height="100vh">
@@ -81,7 +79,7 @@ const SignUp: React.FC = () => {
         <Box justifyContent="center"
           boxShadow={theme.palette.type === "dark" ? "0px 20px 15px rgba(90,90,90,.1)" : "0px 20px 15px rgba(0,0,0,.1)"}
           maxWidth={responsive ? "100%" : "20rem"} padding="1rem 2rem" display="flex" flexDirection="column" height="100%">
-          <form ref={formRef} onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <Grid container spacing={3} style={{
               boxShadow: responsive ? theme.palette.type === "dark" ? "0px 4px 15px rgba(90,90,90,.1)" : "0px 4px 15px rgba(0,0,0,.1)" : "",
               backgroundColor: responsive ? theme.palette.background.paper : theme.palette.background.default,
@@ -100,57 +98,59 @@ const SignUp: React.FC = () => {
               </Grid>
               <Grid item md={12} xs={12}>
                 <FormControl fullWidth variant="standard">
-                  <InputLabel required htmlFor="name">Nome</InputLabel>
+                  <InputLabel required error={!!errors.name} htmlFor="name">Nome</InputLabel>
                   <Input
                     autoFocus
                     id="name"
+                    name="name"
                     autoComplete="off"
-                    value={name}
-                    required
+                    error={!!errors.name}
+                    inputRef={register({ required: true })}
 
-                    onChange={(e) => setName(e.target.value)}
                   />
                 </FormControl>
               </Grid>
               <Grid item md={12} xs={12}>
                 <FormControl fullWidth variant="standard">
-                  <InputLabel required htmlFor="email">E-mail</InputLabel>
+                  <InputLabel required error={!!errors.email} htmlFor="email">E-mail</InputLabel>
                   <Input
-                    autoFocus
+
                     id="email"
+                    name="email"
                     autoComplete="off"
-                    value={email}
-                    required
-                    onChange={(e) => setEmail(e.target.value)}
+                    error={!!errors.email}
+                    inputRef={register({ required: true })}
+
                   />
                 </FormControl>
               </Grid>
               <Grid item md={12} xs={12}>
                 <FormControl fullWidth variant="standard">
-                  <InputLabel required htmlFor="password">Senha</InputLabel>
+                  <InputLabel required htmlFor="password"
+                    error={!!errors.password}
+                  >Senha</InputLabel>
                   <Input
                     id="password"
                     type="password"
                     autoComplete="current-password"
-                    value={password}
-                    required
-                    onChange={(e) => setPassword(e.target.value)}
+                    name="password"
+                    error={!!errors.password}
+                    inputRef={register({ required: true })}
                   />
                 </FormControl>
               </Grid>
               <Grid item md={12} xs={12}>
                 <FormControl component="div">
                   <RadioGroup
-                    value={role}
-                    onChange={(e) => setRole(e.target.value)}
-                    aria-label="gender"
+                    defaultValue="candidate"
+                    aria-label="Role"
                     name="role"
                     style={{
                       display: "flex",
                       flexDirection: 'row'
                     }}>
-                    <FormControlLabel value="candidate" labelPlacement="end" control={<Radio color="primary" />} label="Candidato" />
-                    <FormControlLabel value="recruiter" labelPlacement="end" control={<Radio color="primary" />} label="Recrutador" />
+                    <FormControlLabel value="candidate" labelPlacement="end" control={<Radio name="role" inputRef={register({ required: true })} color="primary" />} label="Candidato" />
+                    <FormControlLabel value="recruiter" labelPlacement="end" control={<Radio name="role" inputRef={register({ required: true })} color="primary" />} label="Recrutador" />
                   </RadioGroup>
                 </FormControl>
               </Grid>
