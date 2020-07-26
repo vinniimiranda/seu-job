@@ -5,6 +5,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { Router } from 'react-router';
 import Routes from '../routes/index'
 import history from '../services/history'
+import Notifier from '../components/Notifier';
 
 const ThemeContext = createContext(false)
 const ThemeUpdateContext = createContext(() => { })
@@ -46,6 +47,7 @@ const ThemeProvider: React.FC = ({ children }) => {
     <ThemeUpdateContext.Provider value={toggleTheme}>
       <ThemeMUIProvider theme={theme}>
         <CssBaseline />
+        <Notifier />
         <Router history={history}>
           <Routes />
         </Router>

@@ -4,6 +4,7 @@ import { signInSuccess, signFailure, signInRequest, resetPasswordRequest, signUp
 import { API } from '../../../services/api'
 import history from '../../../services/history'
 import { RootState } from '../../../types/state';
+import { enqueueSnackbar } from '../notifier/actions';
 
 export function* signIn ({ payload }: ReturnType<typeof signInRequest>) {
   try {
@@ -13,7 +14,14 @@ export function* signIn ({ payload }: ReturnType<typeof signInRequest>) {
     API.defaults.headers.Authorization = `Bearer ${token}`
 
     yield put(signInSuccess(token, { ...response.data }))
-    console.log('token', token);
+    yield put(enqueueSnackbar({
+      message: 'Failed fetching data.',
+      options: {
+        key: new Date().getTime() + Math.random(),
+        variant: 'error',
+
+      },
+    }))
 
     history.push('/jobs')
   } catch (error) {
@@ -26,12 +34,26 @@ export function* signUp ({ payload }: ReturnType<typeof signUpRequest>) {
   try {
     const response = yield call(API.post, 'register', payload)
 
-    alert(response.data.message)
+    yield put(enqueueSnackbar({
+      message: response.data.message,
+      options: {
+        key: new Date().getTime() + Math.random(),
+        variant: 'success',
+      },
+    }))
+
     // yield put(signInRequest(payload.email, payload.password))
 
 
   } catch (error) {
-    console.log(error);
+
+    yield put(enqueueSnackbar({
+      message: error.response.data.errors[0].message,
+      options: {
+        key: new Date().getTime() + Math.random(),
+        variant: 'error',
+      },
+    }))
 
 
   }

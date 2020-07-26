@@ -167,7 +167,7 @@ const SignUp: React.FC = () => {
 
               <Grid item md={12} xs={12}>
                 <Button type="submit" size="large" fullWidth variant="contained" color="primary">
-                  {loading ? <CircularProgress color="inherit" size="1.65rem" /> : "Entrar"}
+                  {loading ? <CircularProgress color="inherit" size="1.65rem" /> : "Cadastrar"}
                 </Button>
               </Grid>
 
