@@ -11,17 +11,17 @@ const ThemeContext = createContext(false)
 const ThemeUpdateContext = createContext(() => { })
 
 const ThemeProvider: React.FC = ({ children }) => {
-  const darkMode = Boolean(localStorage.getItem('darkMode'))
+  const lightMode = Boolean(localStorage.getItem('lightMode'))
 
-  const [darkTheme, setDarkTheme] = useState(darkMode)
+  const [darkTheme, setDarkTheme] = useState(!lightMode)
 
   function toggleTheme () {
     setDarkTheme(prevDarkTheme => {
-      if (!prevDarkTheme) {
-        localStorage.setItem('darkMode', "true")
+      if (prevDarkTheme) {
+        localStorage.setItem('lightMode', "true")
       }
       else {
-        localStorage.removeItem('darkMode')
+        localStorage.removeItem('lightMode')
 
       }
       return !prevDarkTheme
@@ -34,7 +34,7 @@ const ThemeProvider: React.FC = ({ children }) => {
         palette: {
           type: darkTheme ? "dark" : "light",
           primary: {
-            main: darkTheme ? "#7b99ff" : "#7b99ff",
+            main: darkTheme ? "#7b99ff" : "#00DDAA",
             contrastText: "#fff",
 
           },
