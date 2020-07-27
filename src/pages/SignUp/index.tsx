@@ -71,7 +71,7 @@ const SignUp: React.FC = () => {
           </h2>
         </Box>
       </Box>
-      <Box display="flex" flexDirection="column">
+      <Box display="flex" flexDirection="column" >
         <Box display="flex" justifyContent="flex-end">
           <Switch checked={darkMode} color="primary" onChange={toggleTheme} size="medium" />
         </Box>

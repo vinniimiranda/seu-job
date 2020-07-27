@@ -105,6 +105,7 @@ const SignIn: React.FC = () => {
                     autoFocus
                     id="email"
                     autoComplete="off"
+                    autoCapitalize="off"
                     name="email"
                     inputRef={register({ required: true })}
                   />

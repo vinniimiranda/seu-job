@@ -83,7 +83,7 @@ export const NavResponsive: React.FC<NavResponsiveProps> = ({ isOpen, handleClos
 
 
   return <Drawer anchor="left" open={isOpen} onClose={handleClose}>
-    <Box width="60vw" height="100vh" bgcolor={theme.palette.primary.main}>
+    <Box width="60vw" height="100%" bgcolor={theme.palette.primary.main}>
 
       <Box display="flex" flexDirection="column" padding="1rem 0" justifyContent="space-between" alignItems="center" height="100%">
         <Avatar alt="Remy Sharp" src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Pierre-Person.jpg"

@@ -29,7 +29,7 @@ const DefaultLayout: React.FC = ({ children }) => {
 
       <Box padding={responsive ? ".5rem .75rem" : "1rem 2rem"} width="100%" marginLeft={responsive ? 0 : "6rem"}>
         {responsive && <NavResponsive isOpen={isOpen} handleClose={handleClose} />}
-        <Box display="flex" marginBottom="2rem" justifyContent={responsive ? "space-between" : "flex-end"}>
+        <Box display="flex" marginBottom=".5rem" justifyContent={responsive ? "space-between" : "flex-end"}>
           {responsive && <Box>
             <Menu color="primary" style={{ fontSize: '1.75rem' }} onClick={handleOpen} />
           </Box>}
