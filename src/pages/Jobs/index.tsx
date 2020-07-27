@@ -97,7 +97,7 @@ const Jobs: React.FC = () => {
 
 
               </Box>
-              <Box display="flex" justifyContent="space-between" margin="1rem 0">
+              <Box display="flex" justifyContent="space-between" margin="2rem 0">
                 <Button color="primary" variant="outlined" size="large" onClick={() => setIsOpen(true)}>
                   Detalhes
               </Button>

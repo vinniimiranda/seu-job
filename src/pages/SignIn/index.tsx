@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Grid, FormControl, InputLabel, Input, Checkbox, FormControlLabel, Link, Switch, CircularProgress } from '@material-ui/core';
+import { Box, Button, Grid, FormControl, InputLabel, Input, Checkbox, FormControlLabel, Link, Switch, CircularProgress, FormHelperText } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 
 import { useResponsive } from '../../hooks/useResponsive';
@@ -20,7 +20,7 @@ interface IFormInput {
 const SignIn: React.FC = () => {
   const dispatch = useDispatch()
 
-  const responsive = useResponsive(528);
+  const responsive = useResponsive(425);
   const theme = useTheme();
   const darkMode = useThemeDarkMode()
   const toggleTheme = useThemeUpdate()
@@ -108,6 +108,7 @@ const SignIn: React.FC = () => {
                     name="email"
                     inputRef={register({ required: true })}
                   />
+                  {!!errors.email && <FormHelperText error={!!errors.email}>E-mail é obrigatório</FormHelperText>}
                 </FormControl>
               </Grid>
               <Grid item md={12} xs={12}>
@@ -120,6 +121,7 @@ const SignIn: React.FC = () => {
                     name="password"
                     inputRef={register({ required: true })}
                   />
+                  {!!errors.password && <FormHelperText error={!!errors.password}>Senha é obrigatório</FormHelperText>}
                 </FormControl>
               </Grid>
 
@@ -136,11 +138,11 @@ const SignIn: React.FC = () => {
                 </Button>
               </Grid>
               <Grid item md={12} xs={12}>
-                <Link style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', width: '100%' }} component="button"
+                <Link style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', width: '100%' }} component="a"
                   variant="body2"> Esqueceu sua sennha?</Link>
               </Grid>
               <Grid item md={12} xs={12}>
-                <Link onClick={() => history.push('/signup')} style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', width: '100%' }} component="button"
+                <Link onClick={() => history.push('/signup')} style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', width: '100%' }} component="a"
                   variant="body1">Criar conta</Link>
               </Grid>
             </Grid>

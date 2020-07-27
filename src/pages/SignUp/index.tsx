@@ -23,7 +23,7 @@ interface IFormInput {
 const SignUp: React.FC = () => {
   const dispatch = useDispatch()
 
-  const responsive = useResponsive(528);
+  const responsive = useResponsive(425);
   const theme = useTheme();
   const darkMode = useThemeDarkMode()
   const toggleTheme = useThemeUpdate()
@@ -140,14 +140,18 @@ const SignUp: React.FC = () => {
                 </FormControl>
               </Grid>
               <Grid item md={12} xs={12}>
-                <FormControl component="div">
+                <FormControl fullWidth component="div">
                   <RadioGroup
                     defaultValue="candidate"
                     aria-label="Role"
                     name="role"
+
                     style={{
                       display: "flex",
-                      flexDirection: 'row'
+                      flexDirection: 'row',
+                      justifyContent: 'space-around',
+                      flex: 1,
+
                     }}>
                     <FormControlLabel value="candidate" labelPlacement="end" control={<Radio name="role" inputRef={register({ required: true })} color="primary" />} label="Candidato" />
                     <FormControlLabel value="recruiter" labelPlacement="end" control={<Radio name="role" inputRef={register({ required: true })} color="primary" />} label="Recrutador" />
@@ -159,7 +163,7 @@ const SignUp: React.FC = () => {
                 <Box display="flex" justifyContent="center" alignItems="center" >
 
                   <span style={{ fontSize: '1.1rem', textAlign: "center" }}>
-                    Ao se cadastrar você concorda com os <Link component="button" variant="body1">Termos de Serviço.</Link>
+                    Ao se cadastrar você concorda com os <Link onClick={() => alert('mostra termos')} component="a" variant="body1">Termos de Serviço.</Link>
                   </span>
                 </Box>
 

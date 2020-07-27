@@ -1,15 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 
 export function useResponsive (breakpoint = 1024) {
   const [responsive, setResponsive] = useState(false)
-  useEffect(() => {
+  useLayoutEffect(() => {
 
     function updateSize () {
-
-      setResponsive(window.innerWidth <= breakpoint)
+      setResponsive(window.outerWidth <= breakpoint)
     }
     window.addEventListener('resize', updateSize)
-    window.addEventListener('change', updateSize)
+
     updateSize()
     return () => window.removeEventListener('resize', updateSize)
   }, [breakpoint])
