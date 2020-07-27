@@ -106,7 +106,6 @@ const SignUp: React.FC = () => {
                     autoComplete="off"
                     error={!!errors.name}
                     inputRef={register({ required: true })}
-
                   />
                 </FormControl>
               </Grid>
@@ -114,13 +113,12 @@ const SignUp: React.FC = () => {
                 <FormControl fullWidth variant="standard">
                   <InputLabel required error={!!errors.email} htmlFor="email">E-mail</InputLabel>
                   <Input
-
                     id="email"
                     name="email"
                     autoComplete="off"
                     error={!!errors.email}
+                    inputProps={{ autoCapitalize: 'off' }}
                     inputRef={register({ required: true })}
-
                   />
                 </FormControl>
               </Grid>
@@ -134,6 +132,7 @@ const SignUp: React.FC = () => {
                     type="password"
                     autoComplete="current-password"
                     name="password"
+                    inputProps={{ autoCapitalize: 'off' }}
                     error={!!errors.password}
                     inputRef={register({ required: true })}
                   />
@@ -145,7 +144,6 @@ const SignUp: React.FC = () => {
                     defaultValue="candidate"
                     aria-label="Role"
                     name="role"
-
                     style={{
                       display: "flex",
                       flexDirection: 'row',
@@ -161,7 +159,6 @@ const SignUp: React.FC = () => {
 
               <Grid item md={12} xs={12}>
                 <Box display="flex" justifyContent="center" alignItems="center" >
-
                   <span style={{ fontSize: '1.1rem', textAlign: "center" }}>
                     Ao se cadastrar você concorda com os <Link onClick={() => alert('mostra termos')} component="a" variant="body1">Termos de Serviço.</Link>
                   </span>

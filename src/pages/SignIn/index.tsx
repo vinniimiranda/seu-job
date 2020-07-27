@@ -107,6 +107,7 @@ const SignIn: React.FC = () => {
                     autoComplete="off"
                     autoCapitalize="off"
                     name="email"
+                    inputProps={{ autoCapitalize: 'off' }}
                     inputRef={register({ required: true })}
                   />
                   {!!errors.email && <FormHelperText error={!!errors.email}>E-mail é obrigatório</FormHelperText>}
@@ -120,6 +121,7 @@ const SignIn: React.FC = () => {
                     type="password"
                     autoComplete="current-password"
                     name="password"
+                    inputProps={{ autoCapitalize: 'off' }}
                     inputRef={register({ required: true })}
                   />
                   {!!errors.password && <FormHelperText error={!!errors.password}>Senha é obrigatório</FormHelperText>}
