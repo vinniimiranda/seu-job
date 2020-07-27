@@ -11,10 +11,21 @@ const ThemeContext = createContext(false)
 const ThemeUpdateContext = createContext(() => { })
 
 const ThemeProvider: React.FC = ({ children }) => {
-  const [darkTheme, setDarkTheme] = useState(true)
+  const darkMode = Boolean(localStorage.getItem('darkMode'))
+
+  const [darkTheme, setDarkTheme] = useState(darkMode)
 
   function toggleTheme () {
-    setDarkTheme(prevDarkTheme => !prevDarkTheme)
+    setDarkTheme(prevDarkTheme => {
+      if (!prevDarkTheme) {
+        localStorage.setItem('darkMode', "true")
+      }
+      else {
+        localStorage.removeItem('darkMode')
+
+      }
+      return !prevDarkTheme
+    })
   }
 
   const theme = React.useMemo(
