@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
-import { Box, Button, Grid, FormControl, InputLabel, Input, Link, Switch, RadioGroup, FormControlLabel, Radio, CircularProgress } from '@material-ui/core';
+import { Box, Button, Grid, FormControl, InputLabel, Input, Link, Switch, RadioGroup, FormControlLabel, Radio, CircularProgress, FormHelperText } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -108,8 +108,12 @@ const SignUp: React.FC = () => {
                     name="name"
                     autoComplete="off"
                     error={!!errors.name}
-                    inputRef={register({ required: true })}
+                    inputRef={register({ required: true, pattern: /[a-zA-Z]/ })}
+
                   />
+                  {!!errors.name && <FormHelperText>{
+                    errors.name.type === "pattern" ? "Digite um nome válido" : "Campo obrigatório"
+                  }</FormHelperText>}
                 </FormControl>
               </Grid>
               <Grid item md={12} xs={12}>
@@ -121,8 +125,11 @@ const SignUp: React.FC = () => {
                     autoComplete="off"
                     error={!!errors.email}
                     inputProps={{ autoCapitalize: 'off' }}
-                    inputRef={register({ required: true })}
+                    inputRef={register({ required: true, pattern: /\S+@\S+\.\S+/ })}
                   />
+                  {!!errors.email && <FormHelperText>{
+                    errors.email.type === "pattern" ? "Digite um e-mail válido" : "Campo obrigatório"
+                  }</FormHelperText>}
                 </FormControl>
               </Grid>
               <Grid item md={12} xs={12}>
@@ -139,6 +146,9 @@ const SignUp: React.FC = () => {
                     error={!!errors.password}
                     inputRef={register({ required: true })}
                   />
+                  {!!errors.password && <FormHelperText>{
+                    errors.password.type === "pattern" ? "Digite um e-mail válido" : "Campo obrigatório"
+                  }</FormHelperText>}
                 </FormControl>
               </Grid>
               <Grid item md={12} xs={12}>

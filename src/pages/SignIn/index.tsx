@@ -110,9 +110,11 @@ const SignIn: React.FC = () => {
                     autoCapitalize="off"
                     name="email"
                     inputProps={{ autoCapitalize: 'off' }}
-                    inputRef={register({ required: true })}
+                    inputRef={register({ required: true, pattern: /\S+@\S+\.\S+/ })}
                   />
-                  {!!errors.email && <FormHelperText error={!!errors.email}>E-mail é obrigatório</FormHelperText>}
+                  {!!errors.email && <FormHelperText>{
+                    errors.email.type === "pattern" ? "Digite um e-mail válido" : "Campo obrigatório"
+                  }</FormHelperText>}
                 </FormControl>
               </Grid>
               <Grid item md={12} xs={12}>
@@ -126,7 +128,9 @@ const SignIn: React.FC = () => {
                     inputProps={{ autoCapitalize: 'off' }}
                     inputRef={register({ required: true })}
                   />
-                  {!!errors.password && <FormHelperText error={!!errors.password}>Senha é obrigatório</FormHelperText>}
+                  {!!errors.password && <FormHelperText>{
+                    errors.password.type === "pattern" ? "Digite um e-mail válido" : "Campo obrigatório"
+                  }</FormHelperText>}
                 </FormControl>
               </Grid>
 
