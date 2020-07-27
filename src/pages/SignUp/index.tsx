@@ -108,7 +108,7 @@ const SignUp: React.FC = () => {
                     name="name"
                     autoComplete="off"
                     error={!!errors.name}
-                    inputRef={register({ required: true, pattern: /[a-zA-Z]/ })}
+                    inputRef={register({ required: true, pattern: /^([a-z']{2,25}\s?)+$/i })}
 
                   />
                   {!!errors.name && <FormHelperText>{

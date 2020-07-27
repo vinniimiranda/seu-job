@@ -55,6 +55,7 @@ export function* signUp ({ payload }: ReturnType<typeof signUpRequest>) {
       },
     }))
 
+    setTimeout(() => history.push('/'), 1500)
     // yield put(signInRequest(payload.email, payload.password))
 
 
