@@ -59,7 +59,10 @@ const SignUp: React.FC = () => {
           }}>Encontre a vaga perfeita para você!</h2>
 
         </Box>
-        <SignUpBG />
+        <Box width="100%">
+
+          <SignUpBG />
+        </Box>
         <Box display="flex" justifyContent="center">
           <h2 style={{
             color: theme.palette.background.default,
