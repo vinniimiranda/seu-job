@@ -34,7 +34,7 @@ const ThemeProvider: React.FC = ({ children }) => {
         palette: {
           type: darkTheme ? "dark" : "light",
           primary: {
-            main: darkTheme ? "#7b99ff" : "#00DDAA",
+            main: darkTheme ? "#7b99ff" : "#00BFA6",
             contrastText: "#fff",
 
           },
