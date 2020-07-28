@@ -25,7 +25,7 @@ const Nav: React.FC = () => {
 
   return <Box width="6rem" position="fixed" height="100vh" bgcolor={theme.palette.primary.main}>
     <Box display="flex" flexDirection="column" padding="1rem 0" justifyContent="space-between" alignItems="center" height="100%">
-      <Avatar alt="Remy Sharp" src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Pierre-Person.jpg"
+      <Avatar alt="User" src="https://avatars2.githubusercontent.com/u/33462844?s=460&u=1dd18b87002acbd2e2b7635566d10517b593c304&v=4"
         style={{
           width: '4rem',
           height: '4rem'
@@ -86,7 +86,7 @@ export const NavResponsive: React.FC<NavResponsiveProps> = ({ isOpen, handleClos
     <Box width="60vw" height="100%" bgcolor={theme.palette.primary.main}>
 
       <Box display="flex" flexDirection="column" padding="1rem 0" justifyContent="space-between" alignItems="center" height="100%">
-        <Avatar alt="Remy Sharp" src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Pierre-Person.jpg"
+        <Avatar alt="User" src="https://avatars2.githubusercontent.com/u/33462844?s=460&u=1dd18b87002acbd2e2b7635566d10517b593c304&v=4"
           style={{
             width: '4rem',
             height: '4rem'
