@@ -3,7 +3,6 @@ import { useLayoutEffect, useState } from 'react'
 export function useResponsive (breakpoint = 1024) {
   const [responsive, setResponsive] = useState(false)
   useLayoutEffect(() => {
-
     function updateSize () {
       setResponsive(window.outerWidth <= breakpoint)
     }

@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import { Box, Grid, FormControl, InputLabel, Input, FormControlLabel, Checkbox, useTheme, Button, FormHelperText } from '@material-ui/core';
-import { useForm, Controller } from 'react-hook-form';
+import React, { useEffect } from 'react'
+import { Box, Grid, FormControl, InputLabel, Input, FormControlLabel, Checkbox, useTheme, Button, FormHelperText } from '@material-ui/core'
+import { useForm, Controller } from 'react-hook-form'
 import cep from 'cep-promise'
-import { API } from '../../services/api';
-import { enqueueSnackbar } from '../../store/modules/notifier/actions';
-import { useDispatch } from 'react-redux';
+import { API } from '../../services/api'
+import { enqueueSnackbar } from '../../store/modules/notifier/actions'
+import { useDispatch } from 'react-redux'
 
 interface IFormInput {
   user: {
@@ -27,25 +27,24 @@ interface IFormInput {
   }
 }
 
-
 const Profile: React.FC = () => {
   const dispatch = useDispatch()
   const theme = useTheme()
-  const { handleSubmit, setValue, getValues, control, errors } = useForm<IFormInput>();
+  const { handleSubmit, setValue, getValues, control, errors } = useForm<IFormInput>()
 
   const numberRef = React.useRef()
 
   const onSubmit = (payload: IFormInput) => {
     API.put('/candidates/me', payload).then(({ data }) => {
       dispatch(enqueueSnackbar({
-        message: "Profile updated",
+        message: 'Profile updated',
         options: {
           key: new Date().getTime() + Math.random(),
-          variant: 'success',
-        },
+          variant: 'success'
+        }
       }))
     })
-  };
+  }
 
   useEffect(() => {
     async function loadProfile () {
@@ -65,24 +64,22 @@ const Profile: React.FC = () => {
       })
     }
     loadProfile()
-    //eslint-disable-next-line
+    // eslint-disable-next-line
   }, [])
 
   const handleCepSearch = () => {
     const CEP: string = getValues('address.cep')
 
     cep(CEP).then(values => {
-      //@ts-ignore
+      // @ts-ignore
       numberRef.current.focus()
 
       setValue('address.street', values.street, { shouldDirty: false, shouldValidate: false })
       setValue('address.neighborhood', values.neighborhood, { shouldDirty: false, shouldValidate: false })
       setValue('address.city', values.city, { shouldDirty: false, shouldValidate: false })
       setValue('address.state', values.state, { shouldDirty: false, shouldValidate: false })
-
     })
   }
-
 
   return <Box display="flex" flexDirection="column">
     <Box>
@@ -312,7 +309,7 @@ const Profile: React.FC = () => {
         <Grid container spacing={2}>
           <Grid item>
             <FormControlLabel
-              control={<Checkbox color={"primary"} checked name="rember" />}
+              control={<Checkbox color={'primary'} checked name="rember" />}
               label="Javascript"
             />
           </Grid>
@@ -328,4 +325,4 @@ const Profile: React.FC = () => {
   </Box>
 }
 
-export default Profile;
+export default Profile

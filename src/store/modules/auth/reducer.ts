@@ -14,19 +14,19 @@ export default function auth (state = INITIAL_STATE, action) {
         break
       }
       case '@auth/SIGN_IN_SUCCESS': {
-        draft.signed = true;
-        draft.loading = false;
-        draft.token = action.payload.token;
+        draft.signed = true
+        draft.loading = false
+        draft.token = action.payload.token
         break
       }
       case '@auth/SIGN_FAILURE': {
-        draft.loading = false;
+        draft.loading = false
         break
       }
       case '@auth/SIGN_OUT': {
         draft.token = null
         draft.signed = false
-        draft.loading = false;
+        draft.loading = false
         break
       }
       default:

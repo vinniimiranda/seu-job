@@ -27,9 +27,9 @@ const DefaultLayout: React.FC = ({ children }) => {
     <Box display="flex">
       {!responsive && <Nav />}
 
-      <Box padding={responsive ? ".5rem .75rem" : "1rem 2rem"} width="100%" marginLeft={responsive ? 0 : "6rem"}>
+      <Box padding={responsive ? '.5rem .75rem' : '1rem 2rem'} width="100%" marginLeft={responsive ? 0 : '6rem'}>
         {responsive && <NavResponsive isOpen={isOpen} handleClose={handleClose} />}
-        <Box display="flex" marginBottom=".5rem" justifyContent={responsive ? "space-between" : "flex-end"}>
+        <Box display="flex" marginBottom=".5rem" justifyContent={responsive ? 'space-between' : 'flex-end'}>
           {responsive && <Box>
             <Menu color="primary" style={{ fontSize: '1.75rem' }} onClick={handleOpen} />
           </Box>}
@@ -50,8 +50,7 @@ type Props = {
 }
 
 const RouteWrapper: React.FC<Props> = ({ component: Component, isPrivate = false, ...rest }) => {
-
-  //@ts-ignore
+  // @ts-ignore
   const { signed } = store.getState().auth
 
   if (!signed && isPrivate) {
@@ -74,6 +73,5 @@ const RouteWrapper: React.FC<Props> = ({ component: Component, isPrivate = false
     />
   )
 }
-
 
 export default RouteWrapper

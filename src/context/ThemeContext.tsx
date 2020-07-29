@@ -1,11 +1,12 @@
 import React, { createContext, useState, useContext } from 'react'
-import { createMuiTheme, ThemeProvider as ThemeMUIProvider } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
+import PropTypes from 'prop-types'
+import { createMuiTheme, ThemeProvider as ThemeMUIProvider } from '@material-ui/core/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
 
-import { Router } from 'react-router';
+import { Router } from 'react-router'
 import Routes from '../routes/index'
 import history from '../services/history'
-import Notifier from '../components/Notifier';
+import Notifier from '../components/Notifier'
 
 const ThemeContext = createContext(false)
 const ThemeUpdateContext = createContext(() => { })
@@ -18,11 +19,9 @@ const ThemeProvider: React.FC = ({ children }) => {
   function toggleTheme () {
     setDarkTheme(prevDarkTheme => {
       if (prevDarkTheme) {
-        localStorage.setItem('lightMode', "true")
-      }
-      else {
+        localStorage.setItem('lightMode', 'true')
+      } else {
         localStorage.removeItem('lightMode')
-
       }
       return !prevDarkTheme
     })
@@ -32,10 +31,10 @@ const ThemeProvider: React.FC = ({ children }) => {
     () =>
       createMuiTheme({
         palette: {
-          type: darkTheme ? "dark" : "light",
+          type: darkTheme ? 'dark' : 'light',
           primary: {
-            main: darkTheme ? "#7b99ff" : "#00BFA6",
-            contrastText: "#fff",
+            main: darkTheme ? '#7b99ff' : '#00BFA6',
+            contrastText: '#fff'
 
           },
           // secondary: {
@@ -46,13 +45,13 @@ const ThemeProvider: React.FC = ({ children }) => {
           //   paper: darkTheme ? "#111128" : "#EEE",
           // },
           text: {
-            primary: darkTheme ? "#FFF" : "#666",
-            secondary: darkTheme ? "#FFF" : "#999",
-          },
-        },
+            primary: darkTheme ? '#FFF' : '#666',
+            secondary: darkTheme ? '#FFF' : '#999'
+          }
+        }
       }),
     [darkTheme]
-  );
+  )
 
   return <ThemeContext.Provider value={darkTheme}>
     <ThemeUpdateContext.Provider value={toggleTheme}>
@@ -66,6 +65,10 @@ const ThemeProvider: React.FC = ({ children }) => {
       {children}
     </ThemeUpdateContext.Provider>
   </ThemeContext.Provider>
+}
+
+ThemeProvider.propTypes = {
+  children: PropTypes.element.isRequired
 }
 
 export function useTheme () {

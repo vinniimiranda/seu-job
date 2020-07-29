@@ -1,9 +1,9 @@
-//@ts-nocheck
-import { ENQUEUE_SNACKBAR, CLOSE_SNACKBAR, REMOVE_SNACKBAR } from './actions';
+// @ts-nocheck
+import { ENQUEUE_SNACKBAR, CLOSE_SNACKBAR, REMOVE_SNACKBAR } from './actions'
 
 const defaultState = {
-  notifications: [],
-};
+  notifications: []
+}
 
 export default (state = defaultState, action) => {
   switch (action.type) {
@@ -14,10 +14,10 @@ export default (state = defaultState, action) => {
           ...state.notifications,
           {
             key: action.key,
-            ...action.notification,
-          },
-        ],
-      };
+            ...action.notification
+          }
+        ]
+      }
 
     case CLOSE_SNACKBAR:
       return {
@@ -26,18 +26,18 @@ export default (state = defaultState, action) => {
           (action.dismissAll || notification.key === action.key)
             ? { ...notification, dismissed: true }
             : { ...notification }
-        )),
-      };
+        ))
+      }
 
     case REMOVE_SNACKBAR:
       return {
         ...state,
         notifications: state.notifications.filter(
-          notification => notification.key !== action.key,
-        ),
-      };
+          notification => notification.key !== action.key
+        )
+      }
 
     default:
-      return state;
+      return state
   }
-};
+}

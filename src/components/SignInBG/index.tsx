@@ -1,15 +1,13 @@
-import React from 'react';
-import { useTheme } from '@material-ui/core';
-
-
+import React from 'react'
+import { useTheme } from '@material-ui/core'
 
 const SignInBG: React.FC = () => {
-  const theme = useTheme();
+  const theme = useTheme()
 
   return <div style={{
-    display: "flex",
-    justifyContent: "center",
-    height: "100%",
+    display: 'flex',
+    justifyContent: 'center',
+    height: '100%',
     maxHeight: '20rem'
   }}>
     <svg width="100%" height="100%" viewBox="0 0 737 534" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -53,8 +51,7 @@ const SignInBG: React.FC = () => {
       </defs>
     </svg>
 
-
-  </div>;
+  </div>
 }
 
-export default SignInBG;
+export default SignInBG

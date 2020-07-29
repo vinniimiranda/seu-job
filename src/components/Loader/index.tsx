@@ -1,5 +1,5 @@
-import React from 'react';
-import { Box, CircularProgress } from '@material-ui/core';
+import React from 'react'
+import { Box, CircularProgress } from '@material-ui/core'
 
 const Loader: React.FC = () => {
   return <Box display="flex" height="100vh" width="100vw" justifyContent="center" alignItems="center">
@@ -7,4 +7,4 @@ const Loader: React.FC = () => {
   </Box>
 }
 
-export default Loader;
+export default Loader
