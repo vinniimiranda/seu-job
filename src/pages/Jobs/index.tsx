@@ -11,7 +11,8 @@ type Job = {
   type: string;
   company: {
     id: number;
-    avatar_url: string;
+    name: string;
+    image_url: string;
   }
 }
 
@@ -37,7 +38,7 @@ const Jobs: React.FC = () => {
   const theme = useTheme()
   return <Box display="flex" flexDirection="column" >
     <Box flex="1" display="flex" justifyContent="space-between" alignItems="center">
-      <h1 style={{ color: theme.palette.primary.main }}>Vagas</h1>
+      <h1 style={{ color: theme.palette.primary.main, margin: '1rem 0', }}>Vagas</h1>
       <TextField
         id="standard-start-adornment"
         placeholder="Pesquisar"
@@ -52,7 +53,9 @@ const Jobs: React.FC = () => {
         <Box  >
           <Grid container spacing={2}>
             {jobs.map(job => (
-              <Grid item xl={3} lg={4} md={6} key={job.id}>
+              <Grid style={{
+
+              }} item xl={3} lg={4} md={6} key={job.id}>
                 <Box style={{
                   // border: '1px solid #ccc',
                   boxSizing: 'border-box',
@@ -61,12 +64,23 @@ const Jobs: React.FC = () => {
                   padding: '1rem 1.5rem',
                   display: 'flex',
                   flexDirection: "column",
+                  maxWidth: '94vw'
                 }}>
-                  <Box display="flex" justifyContent="space-between" alignItems="center">
-                    <h2 style={{ color: theme.palette.primary.main, textTransform: 'capitalize' }}>{job.title.toLocaleLowerCase()}</h2>
-                    <Avatar src="https://logodownload.org/wp-content/uploads/2019/08/nubank-logo-0.png" alt="Company Logo" style={{
+                  <Box display="flex" justifyContent="space-between" maxWidth="100%" alignItems="center">
+                    <span style={{
+                      color: theme.palette.primary.main,
+                      fontSize: '1.2rem',
+                      fontWeight: 'bold',
+                      whiteSpace: "nowrap",
+                      overflow: 'hidden',
+                      textOverflow: "ellipsis",
+                      textTransform: 'capitalize'
+                    }}>{job.title.toLocaleLowerCase()}</span>
+                    <Avatar src={job.company.image_url} alt={job.company.name} style={{
                       width: '3.5rem',
-                      height: '3.5rem'
+                      height: '3.5rem',
+                      OObjectFit: "fill",
+                      marginLeft: '1rem'
                     }} />
                   </Box>
                   <Box display="flex" justifyContent="space-between" alignItems="center" marginTop="1rem">
@@ -77,18 +91,28 @@ const Jobs: React.FC = () => {
                       }} />
                       <span>{job.type}</span>
                     </Box>
-                    <Box display="flex" alignItems="flex-end">
+                    <Box display="flex" alignItems="flex-end" maxWidth="70%">
                       <LocationOn style={{
                         fontSize: '1.50rem', color: theme.palette.primary.main
                       }} />
-                      <span>{job.location}</span>
+                      <span style={{
+                        whiteSpace: "nowrap",
+                        overflow: 'hidden',
+                        textOverflow: "ellipsis",
+                      }}>{job.location}</span>
                     </Box>
 
                   </Box>
                   <Box>
-                    <p>{job.description.slice(0, 250)}...</p>
+                    <p style={{
+                      height: "10rem",
+                      width: '100%',
+                      whiteSpace: "pre-wrap",
+                      overflow: 'hidden',
+                      textOverflow: "ellipsis"
+                    }}>{job.description}</p>
                   </Box>
-                  <Box display="flex" justifyContent="space-between">
+                  {/* <Box display="flex" justifyContent="space-between">
                     <Chip
                       color="primary"
                       label={"React"}
@@ -107,8 +131,8 @@ const Jobs: React.FC = () => {
                     />
 
 
-                  </Box>
-                  <Box display="flex" justifyContent="space-between" margin="2rem 0">
+                  </Box> */}
+                  <Box display="flex" justifyContent="space-between" margin="1rem 0">
                     <Button color="primary" variant="outlined" size="large" onClick={() => setIsOpen(true)}>
                       Detalhes
               </Button>
