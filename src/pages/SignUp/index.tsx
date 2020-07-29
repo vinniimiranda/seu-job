@@ -10,6 +10,8 @@ import SignUpBG from '../../components/SignUpBG'
 import { useThemeUpdate, useTheme as useThemeDarkMode } from '../../context/ThemeContext'
 import history from '../../services/history'
 import { signUpRequest } from '../../store/modules/auth/actions'
+
+// eslint-disable-next-line
 import { RootState } from '../../types/state'
 
 interface IFormInput {

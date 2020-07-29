@@ -19,8 +19,12 @@ const ThemeProvider: React.FC = ({ children }) => {
   function toggleTheme () {
     setDarkTheme(prevDarkTheme => {
       if (prevDarkTheme) {
+        // @ts-ignore
+        window.document.getElementById('favicon').href = 'favicon_light.png'
         localStorage.setItem('lightMode', 'true')
       } else {
+        // @ts-ignore
+        window.document.getElementById('favicon').href = 'favicon.png'
         localStorage.removeItem('lightMode')
       }
       return !prevDarkTheme
