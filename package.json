@@ -17,7 +17,7 @@
     "axios": "^0.19.2",
     "cep-promise": "^3.0.9",
     "history": "^4.10.1",
-    "immer": "^5.0.0",
+    "immer": "^9.0.6",
     "notistack": "^0.9.17",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
